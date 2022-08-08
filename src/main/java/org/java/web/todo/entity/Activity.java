@@ -1,25 +1,25 @@
 package org.java.web.todo.entity;
 
-import javax.persistence.*;
+import com.azure.spring.data.cosmos.core.mapping.Container;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+
 import java.util.Objects;
 
-@Entity
-@Table(name="activities")
+@Container(containerName="ToDoList")
 public class Activity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @PartitionKey
+    private String id;
 
     private String name;
 
     private String status;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -43,11 +43,10 @@ public class Activity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (! (o instanceof Activity)) return false;
-        Activity that = (Activity) o;
-        return Objects.equals(id,that.id) &&
-                Objects.equals(name,that.name) &&
-                Objects.equals(status,that.status);
+        Activity activity = (Activity) o;
+        return Objects.equals(id, activity.id) &&
+                Objects.equals(name, activity.name) &&
+                Objects.equals(status, activity.status);
     }
 
     @Override

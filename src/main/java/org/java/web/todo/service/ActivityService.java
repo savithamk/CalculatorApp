@@ -1,12 +1,11 @@
 package org.java.web.todo.service;
 
 import org.java.web.todo.model.ActivityDto;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
 
 public interface ActivityService {
     void save(ActivityDto activity);
-    List<ActivityDto> findAll();
-    List<ActivityDto> findAllByStatus(String status);
+    Flux<ActivityDto> findAll();
+    Flux<ActivityDto> findAllByStatus(String status);
     void delete(Long id);
 }

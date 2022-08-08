@@ -2,9 +2,11 @@ package org.java.web.todo.model;
 
 import org.java.web.todo.entity.Activity;
 
+import java.util.UUID;
+
 public class ActivityDto {
 
-    private Long id;
+    private String id;
     private String name;
     private String status;
 
@@ -18,17 +20,17 @@ public class ActivityDto {
 
     public Activity toEntity(){
         Activity activity = new Activity();
-        activity.setId(id);
+        activity.setId(id != null ? id : UUID.randomUUID().toString());
         activity.setName(name);
-        activity.setStatus(status);
+        activity.setStatus(status !=null ? status : Status.PENDING.name());
         return activity;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
