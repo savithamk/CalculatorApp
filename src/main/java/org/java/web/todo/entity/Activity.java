@@ -15,6 +15,8 @@ public class Activity {
 
     private String status;
 
+    private String userId;
+
     public String getId() {
         return id;
     }
@@ -39,18 +41,24 @@ public class Activity {
         this.status = status;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Activity activity = (Activity) o;
-        return Objects.equals(id, activity.id) &&
-                Objects.equals(name, activity.name) &&
-                Objects.equals(status, activity.status);
+        return Objects.equals(id, activity.id) && Objects.equals(name, activity.name) && Objects.equals(status, activity.status) && Objects.equals(userId, activity.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, status);
+        return Objects.hash(id, name, status, userId);
     }
 }
